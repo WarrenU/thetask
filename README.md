@@ -5,6 +5,9 @@
 1. Clone the repo
 2. Navigate to the project directory.
 3. Run the following command: `go run main.go`
+4. In another terminal: `curl http://localhost:5000`
+
+![alt text](image-1.png)
 
 ## On Scalability:
 - "The web service should remain responsive under load and be able to support multiple concurrent requests. "
@@ -19,3 +22,5 @@
 ## Unit Testing:
 To run the unit tests, you can run this command:
 `go test -v`
+
+![alt text](image.png)

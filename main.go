@@ -59,19 +59,18 @@ func rootHandler(w http.ResponseWriter, r *http.Request) {
 	var nameErr, jokeErr error
 
 	nameResp, nameErr = getName()
-	jokeResp, jokeErr = getJoke(nameResp.FirstName, nameResp.LastName)
-
 	if nameErr != nil {
 		http.Error(w, fmt.Sprintf("Error fetching name: %s", nameErr), http.StatusInternalServerError)
 		return
 	}
+
+	jokeResp, jokeErr = getJoke(nameResp.FirstName, nameResp.LastName)
 	if jokeErr != nil {
 		http.Error(w, fmt.Sprintf("Error fetching joke: %s", jokeErr), http.StatusInternalServerError)
 		return
 	}
 
 	response := jokeResp.Value.Joke
-
 	w.Header().Set("Content-Type", "application/json")
 	if err := json.NewEncoder(w).Encode(response); err != nil {
 		http.Error(w, fmt.Sprintf("Error encoding response: %s", err), http.StatusInternalServerError)
